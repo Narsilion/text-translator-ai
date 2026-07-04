@@ -88,6 +88,7 @@ def test_pages_render(monkeypatch, test_settings) -> None:
     assert 'id="contextTopic"' in home_html
     assert '<option value="News / journalism">News / journalism</option>' in home_html
     assert '<option value="Medicine">Medicine</option>' in home_html
+    assert '<option value="Pregnancy &amp; childbirth">Pregnancy &amp; childbirth</option>' in home_html
     assert 'id="customContext"' in home_html
     assert 'id="contextStatus"' in home_html
     assert "Active context:" in home_html

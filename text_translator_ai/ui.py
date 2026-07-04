@@ -9,6 +9,7 @@ CONTEXT_TOPICS = (
     "General",
     "News / journalism",
     "Medicine",
+    "Pregnancy & childbirth",
     "Legal",
     "Technology",
     "Finance",
@@ -326,7 +327,7 @@ def _language_options(selected: str) -> str:
 
 def _context_topic_options(selected: str = "General") -> str:
     return "\n".join(
-        f'<option value="{topic}"{" selected" if topic == selected else ""}>{topic}</option>'
+        f'<option value="{_escape(topic)}"{" selected" if topic == selected else ""}>{_escape(topic)}</option>'
         for topic in CONTEXT_TOPICS
     )
 
