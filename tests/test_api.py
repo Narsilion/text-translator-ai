@@ -86,6 +86,7 @@ def test_pages_render(monkeypatch, test_settings) -> None:
     assert "restoreDraft();" in home_html
     assert "sourceText.focus();" in home_html
     assert 'id="contextTopic"' in home_html
+    assert '<option value="News / journalism">News / journalism</option>' in home_html
     assert '<option value="Medicine">Medicine</option>' in home_html
     assert 'id="customContext"' in home_html
     assert 'id="contextStatus"' in home_html

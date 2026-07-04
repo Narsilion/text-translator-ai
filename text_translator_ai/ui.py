@@ -7,6 +7,7 @@ from text_translator_ai.schemas import SUPPORTED_LANGUAGES, SettingsRecord, Tran
 
 CONTEXT_TOPICS = (
     "General",
+    "News / journalism",
     "Medicine",
     "Legal",
     "Technology",
