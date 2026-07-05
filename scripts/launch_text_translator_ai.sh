@@ -63,7 +63,7 @@ fi
 
 log "Starting Text Translator AI server"
 notify "Starting local server..."
-nohup .venv/bin/text-translator-ai > "${SERVER_LOG}" 2>&1 &
+nohup env PYTHONPATH="${PROJECT_DIR}" .venv/bin/python -m text_translator_ai.main > "${SERVER_LOG}" 2>&1 &
 if ! wait_for_health; then
   log "Server did not become healthy; see ${SERVER_LOG}"
   notify "Could not start. Check .data/server.log."
