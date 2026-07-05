@@ -17,6 +17,10 @@ log() {
   printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*"
 }
 
+notify() {
+  /usr/bin/osascript -e "display notification \"$1\" with title \"Text Translator AI\"" >/dev/null 2>&1 || true
+}
+
 health_ok() {
   /usr/bin/curl -fsS --max-time 2 "${HEALTH_URL}" >/dev/null
 }
@@ -52,15 +56,17 @@ fi
 
 if [[ ! -x ".venv/bin/text-translator-ai" ]]; then
   log "Creating/updating project virtual environment"
+  notify "Preparing the local app environment. This can take a minute on first launch."
   "${PYTHON_BIN}" -m venv .venv
-  .venv/bin/python -m pip install --upgrade pip
   .venv/bin/python -m pip install -e .
 fi
 
 log "Starting Text Translator AI server"
+notify "Starting local server..."
 nohup .venv/bin/text-translator-ai > "${SERVER_LOG}" 2>&1 &
 if ! wait_for_health; then
   log "Server did not become healthy; see ${SERVER_LOG}"
+  notify "Could not start. Check .data/server.log."
   exit 1
 fi
 
