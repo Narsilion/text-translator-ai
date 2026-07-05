@@ -40,6 +40,23 @@ export GITHUB_MODELS_TOKEN="your_github_models_token"
 
 Default URL: `http://127.0.0.1:8770`
 
+## Spotlight Launcher
+
+Install the macOS Spotlight launcher once:
+
+```bash
+scripts/install_spotlight_launcher.sh
+```
+
+After that, press Spotlight, type `Text Translator AI`, and press Enter. The launcher will:
+
+- source `~/.zshrc` so your existing AI token settings are available
+- create `.venv` and install the app if needed
+- start the local server if it is not already running
+- open `http://127.0.0.1:8770`
+
+Launcher logs are written to `.data/launcher.log`. Server logs are written to `.data/server.log`.
+
 ## Environment
 
 - `OPENAI_API_KEY` required for real OpenAI translation
