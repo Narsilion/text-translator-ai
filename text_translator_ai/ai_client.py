@@ -250,9 +250,15 @@ def _translation_chat_payload(
         if translation_context
         else "Translation context/domain: general.\n"
     )
+    script_line = (
+        "Write the Serbian translation exclusively in the Latin alphabet (latinica), not Cyrillic.\n"
+        if target_language == "Serbian"
+        else ""
+    )
     user_prompt = (
         f"Translate from {source_language} to {target_language}.\n\n"
         f"{context_line}"
+        f"{script_line}"
         "Use the context only to choose accurate terminology; do not add explanations or extra content.\n\n"
         "Text:\n"
         f"{source_text}\n\n"

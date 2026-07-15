@@ -33,3 +33,27 @@ def test_translation_payload_includes_context() -> None:
 
     user_message = payload["messages"][1]["content"]
     assert "Translation context/domain: Medicine." in user_message
+
+
+def test_translation_payload_requires_latin_script_for_serbian_target() -> None:
+    payload = _translation_chat_payload(
+        model="gpt-test",
+        source_text="Доброе утро",
+        source_language="Russian",
+        target_language="Serbian",
+    )
+
+    user_message = payload["messages"][1]["content"]
+    assert "exclusively in the Latin alphabet (latinica), not Cyrillic" in user_message
+
+
+def test_translation_payload_does_not_add_script_rule_for_other_targets() -> None:
+    payload = _translation_chat_payload(
+        model="gpt-test",
+        source_text="Dobro jutro",
+        source_language="Serbian",
+        target_language="Russian",
+    )
+
+    user_message = payload["messages"][1]["content"]
+    assert "Latin alphabet" not in user_message

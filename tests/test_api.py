@@ -80,9 +80,11 @@ def test_pages_render(monkeypatch, test_settings) -> None:
     assert "Text Translator AI" in home_html
     assert 'id="historyList" hidden' in home_html
     assert "Show History" in home_html
-    assert '<option value="Serbian" selected>Serbian</option>' in home_html
-    assert '<option value="Russian" selected>Russian</option>' in home_html
-    assert "text-translator-ai:draft" in home_html
+    assert '<select id="sourceLanguage"><option value="Russian" selected>Russian</option>' in home_html
+    target_select = home_html.split('<select id="targetLanguage">', 1)[1].split("</select>", 1)[0]
+    assert '<option value="Russian">Russian</option>' in target_select
+    assert '<option value="Serbian" selected>Serbian</option>' in target_select
+    assert "text-translator-ai:draft-v2" in home_html
     assert "restoreDraft();" in home_html
     assert "sourceText.focus();" in home_html
     assert 'id="contextTopic"' in home_html

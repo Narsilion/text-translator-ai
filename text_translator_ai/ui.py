@@ -361,11 +361,11 @@ def render_translator_page(settings: SettingsRecord, history: list[TranslationRe
 
       <div class="toolbar">
         <label>Source language
-          <select id="sourceLanguage">{_language_options("Serbian")}</select>
+          <select id="sourceLanguage">{_language_options("Russian")}</select>
         </label>
         <button id="swapButton" title="Swap languages" aria-label="Swap languages">⇄</button>
         <label>Target language
-          <select id="targetLanguage">{_language_options("Russian")}</select>
+          <select id="targetLanguage">{_language_options("Serbian")}</select>
         </label>
       </div>
 
@@ -424,7 +424,7 @@ def render_translator_page(settings: SettingsRecord, history: list[TranslationRe
       const statusText = document.querySelector('#statusText');
       const historyList = document.querySelector('#historyList');
       const toggleHistoryButton = document.querySelector('#toggleHistoryButton');
-      const draftStorageKey = 'text-translator-ai:draft';
+      const draftStorageKey = 'text-translator-ai:draft-v2';
       let debounceTimer = null;
       let requestId = 0;
 
